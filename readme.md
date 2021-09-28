@@ -158,6 +158,84 @@ python main.py --dir_data $DATA_PATH --pretrain $MODEL_PATH --scale 1 --derain
 <img src="images/dr_result.png" width="950">
 </p>
 
+## Quick Start
+
+### Prepare the dataset
+
+```
+${DIR_DATA}
+|-- DIV2K
+    |-- DIV2K_train_HR
+        |-- 0001.png
+        |-- 0002.png
+        |-- ...
+    |-- DIV2K_train_LR_bicubic
+        |-- X2
+            |-- 0001x2.png
+            |-- 0002x2.png
+            |-- ...
+        |-- X3
+            |-- 0001x3.png
+            |-- 0002x3.png
+            |-- ...            
+        |-- X4
+            |-- 0001x4.png
+            |-- 0002x4.png
+            |-- ...
+|-- benchmark
+    |-- Set5
+        |-- HR
+            |-- img_001.png
+            |-- img_002.png
+            |-- ...
+        |--LR_bicubic
+            |-- X2
+                |-- img_001x2.png
+                |-- img_002x2.png
+                |-- ...      
+            |-- X3
+                |-- img_001x3.png
+                |-- img_002x3.png
+                |-- ...   
+            |-- X4
+                |-- img_001x4.png
+                |-- img_002x4.png
+                |-- ...   
+    |-- Set14
+        |-- HR
+            |-- img_001.png
+            |-- img_002.png
+            |-- ...
+        |--LR_bicubic
+            |-- X2
+                |-- img_001x2.png
+                |-- img_002x2.png
+                |-- ... 
+            |-- X3
+                |-- ...
+            |-- X4
+                |-- ...
+    |-- ...(other benchmark dataset)
+```
+
+        
+### Training
+
+`sh train.sh` or
+```
+python3 main.py --dir_data /home/shlu/dataset/IPT_data \
+    --data_test DIV2K --scale 2+3+4 --num_queries 3 --n_GPUs 2 
+
+```
+### Testing
+
+`sh test.sh` or
+```
+python3 main.py --dir_data /home/shlu/dataset/IPT_data \
+    --data_test Set5+Set14+B100+Urban100 \
+    --scale 2+3+4 --num_queries 3 --n_GPUs 2 --test_only --pretrain /home/shlu/IPT_model/model_2.pt
+
+```
 
 ## Citation
 
