@@ -236,6 +236,17 @@ python3 main.py --dir_data /home/shlu/dataset/IPT_data \
     --scale 2+3+4 --num_queries 3 --n_GPUs 2 --test_only --pretrain /home/shlu/IPT_model/model_2.pt
 
 ```
+### arguments
+```
+--n_GPUs : number of GPUs
+--dir_data : dataset directory
+--data_train : train dataset name(default='DIV2K')
+--data_test : test dataset name(default='DIV2K')
+--data_range : index of training/validation data range for DIV2K dataset(default='1-800/801-810')
+--scale : super resolusion scale
+--test_only : set this option to test model
+--save_model_dir : save model directory(default='../model')
+```
 
 ## Citation
 
