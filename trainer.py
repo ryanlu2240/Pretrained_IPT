@@ -114,8 +114,10 @@ class Trainer():
                 self.ckp.log[-1, idx_data, idx_scale] /= len(d)
                 best = self.ckp.log.max(0)
 
-                if d.dataset.name == 'DIV2K' and best[0][idx_data, idx_scale] == self.ckp.log[-1, idx_data, idx_scale]: #save_best
-                    torch.save(self.model.state_dict(), os.path.join(self.args.save_model_dir, 'x' + str(scale) + '_best.pt'))
+                if not self.args.test_only and best[0][idx_data, idx_scale] == self.ckp.log[-1, idx_data, idx_scale]: #save_best
+                    print('saving mode...')
+                    self.model.save(self.args.save_model_dir, best[1][idx_data, idx_scale]+1, is_best=True)
+                    #torch.save(self.model.state_dict(), os.path.join(self.args.save_model_dir, 'x' + str(scale) + '_best.pt'))
 
                 self.ckp.write_log(
                     '[{} x{}]\tPSNR: {:.3f} (Best: {:.3f} @epoch {})'.format(
